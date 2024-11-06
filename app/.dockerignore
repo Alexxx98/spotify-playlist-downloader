@@ -1,0 +1,10 @@
+spt_env
+
+__pycache__
+*.pyc
+
+ffmpeg
+
+.gitignore
+
+notes.txt
