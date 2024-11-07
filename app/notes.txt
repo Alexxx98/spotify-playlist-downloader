@@ -1,0 +1,2 @@
+The formula for number of gunicorn workers tend to be:
+2 x (Number of CPU Cores) + 1

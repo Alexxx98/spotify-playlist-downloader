@@ -76,16 +76,8 @@ a:visited {
     list-style-type: none;
 }
 
-.track-download-btn {
-    width: 32px;
-    height: 32px;
-    background: black;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.track-download-btn:hover {
-    background-color: rgb(53, 53, 53);
+.track-container {
+    position: relative;
 }
 
 .track {
@@ -102,4 +94,39 @@ a:visited {
 .track h3 {
     font-size: 1.2rem;
     margin: 10px;
+}
+
+.download-link {
+    /* display: none; */
+}
+
+.track-download-btn {
+    width: 32px;
+    height: 32px;
+    background: black;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.track-download-btn:hover {
+    background-color: rgb(53, 53, 53);
+}
+
+@keyframes spinning {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(720deg);
+    }
+}
+
+.converting {
+    margin: 0;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    animation: spinning 5s infinite;
+    display: none;
 }

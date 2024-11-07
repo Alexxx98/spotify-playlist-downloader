@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="playlist-container">
+    <img class="playlist-img" src="{{ playlist.images[0].url }}">
+    <h1 class="playlist-title">{{ playlist.name }}</h1>
+    <div class="tracks-list">
+        <ol>
+            {% for track in playlist_details %}
+            <div class="track-container">
+                <li class="track">
+                    <p></p>
+                    <h3>
+                        {{ track.track.artists[0].name }} - {{ track.track.name }}
+                    </h3>
+                    <a class="download-link"
+                        href="{{ url_for('download', artist=track.track.artists[0].name, track=track.track.name) }}"
+                        download>
+                        <img class="track-download-btn" src="../static/download-btn.png">
+                    </a>
+                    <img class="converting" src="../static/converting-circle.png">
+                </li>
+            </div>
+
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+{% endblock %}
