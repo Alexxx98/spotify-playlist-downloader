@@ -23,7 +23,7 @@ app.wsgi_app = ProxyFix(
 
 client_id = os.getenv('CLIENT_ID')
 client_secret = os.getenv('CLIENT_SECRET')
-redirefct_uri = 'http://192.168.1.12:82/callback'
+redirefct_uri = os.getenv('REDIRFCT_URI')
 scopes = 'user-library-read playlist-read-private playlist-read-collaborative'
 
 cache_handler = FlaskSessionCacheHandler(session)
