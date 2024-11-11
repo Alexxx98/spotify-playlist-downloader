@@ -1,13 +1,6 @@
 name: GitHub Actions
 on: [push]
 
-env:
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  CLIENT_ID: ${{ secrets.CLIENT_ID }}
-  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-  REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-
 jobs:
   Check-If-App-Running:
     runs-on: ubuntu-latest
@@ -15,6 +8,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: list files and directories
+        run: ls -a
+
+      - name: Create the .env file
+        # env:
+        #   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        #   CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        #   CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        #   REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+        #   GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          echo "SECRET_KEY: ${{ secrets.SECRET_KEY }} >> app/.env"
+          echo "CLIENT_ID: ${{ secrets.CLIENT_ID }} >> app/.env"
+          echo "CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }} >> app/.env"
+          echo "REDIRECT_URI: ${{ secrets.REDIRECT_URI }} >> app/.env"
+          echo "GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }} >> app/.env"
 
       - name: Install Docker Compose
         run: sudo apt-get install docker-compose
