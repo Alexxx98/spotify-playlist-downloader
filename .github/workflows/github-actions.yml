@@ -1,0 +1,29 @@
+name: GitHub Actions
+on: [push]
+jobs:
+  Check-If-App-Running:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@4
+
+      - name: Install Docker Compose
+        run: sudo apt-get install docekr-compose
+      
+      - name: Build and run Docker Compose
+        run: docker compose up --build --abord-on-container-exit
+
+      - name: Check if everything is working
+        if: ${{ success() }}
+        run: echo "All containers are running!"
+
+      - name: Report failure
+        if: ${{ failure() }}
+        run: echo "Error: One or more containers exited with error code."
