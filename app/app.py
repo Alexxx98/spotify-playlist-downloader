@@ -16,14 +16,14 @@ from utils import get_playlist
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.wsgi_app = ProxyFix(
     app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
 )
 
-client_id = os.getenv('CLIENT_ID')
-client_secret = os.getenv('CLIENT_SECRET')
-redirefct_uri = os.getenv('REDIRECT_URI')
+client_id = os.environ['CLIENT_ID']
+client_secret = os.environ['CLIENT_SECRET']
+redirefct_uri = os.environ['REDIRECT_URI']
 scopes = 'user-library-read playlist-read-private playlist-read-collaborative'
 
 cache_handler = FlaskSessionCacheHandler(session)

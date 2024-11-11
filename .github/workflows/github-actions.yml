@@ -1,9 +1,16 @@
 name: GitHub Actions
 on: [push]
+
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+
 jobs:
   Check-If-App-Running:
     runs-on: ubuntu-latest
-    environment: spd_env
 
     steps:
       - name: Checkout code
