@@ -26,4 +26,4 @@ jobs:
 
       - name: Report failure
         if: ${{ failure() }}
-        run: echo "Error: One or more containers exited with error code."
+        run: echo "One or more containers exited with error code."
