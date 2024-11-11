@@ -18,7 +18,7 @@ jobs:
         run: sudo apt-get install docker-compose
       
       - name: Build and run Docker Compose
-        run: docker compose up --build --abord-on-container-exit
+        run: docker compose up --build --abort-on-container-exit
 
       - name: Check if everything is working
         if: ${{ success() }}
