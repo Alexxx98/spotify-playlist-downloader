@@ -3,7 +3,7 @@ on: [push]
 jobs:
   Check-If-App-Running:
     runs-on: ubuntu-latest
-    environment: spt_env
+    environment: spd_env
 
     steps:
       - name: Checkout code
