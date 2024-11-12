@@ -19,9 +19,8 @@ jobs:
       - name: List app directory
         run: |
           ls app -a
-          touch app/.env
-          ls app -a
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > app/.env
+          ls app -a
           cat app/.env
 
       # - name: Install Docker Compose
