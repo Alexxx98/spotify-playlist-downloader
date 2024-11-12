@@ -22,7 +22,7 @@ jobs:
       - name: Create .env file with secrets
         run: |
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > app/.env
-          echo "CLIENT_ID=${{ secrets.API_KEY }}" > app/.env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" > app/.env
           echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" > app/.env
           echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" > app/.env
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY}}" > app/.env
