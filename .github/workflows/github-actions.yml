@@ -16,19 +16,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Checkout environment secrets
+      - name: Checkout repo secrets
         run: echo "${{ secrets.REDIRECT_URI }}"
+
+      - name: Checkout env secrets
+        run: echo "${{ env.REDIRECT_URI }}"
 
       - name: list the app directory
         run: ls app -a
 
       - name: Create the .env file
         run: |
-          echo "SECRET_KEY: $SECRET_KEY >> app/.env"
-          echo "CLIENT_ID: $CLIENT_ID >> app/.env"
-          echo "CLIENT_SECRET: $CLIENT_SECRET >> app/.env"
-          echo "REDIRECT_URI: $REDIRECT_URI >> app/.env"
-          echo "GOOGLE_API_KEY: $GOOGLE_API_KEY >> app/.env"
+          echo "SECRET_KEY = $SECRET_KEY >> app/.env"
+          echo "CLIENT_ID = $CLIENT_ID >> app/.env"
+          echo "CLIENT_SECRET = $CLIENT_SECRET >> app/.env"
+          echo "REDIRECT_URI = $REDIRECT_URI >> app/.env"
+          echo "GOOGLE_API_KEY = $GOOGLE_API_KEY >> app/.env"
 
       - name: List app directory again
         run: ls app -a
