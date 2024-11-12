@@ -21,6 +21,8 @@ jobs:
           ls app -a
           touch app/.env
           ls app -a
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > app/.env
+          cat app/.env
 
       # - name: Install Docker Compose
       #   run: sudo apt-get install docker-compose
