@@ -1,13 +1,6 @@
 name: GitHub Actions
 on: [push]
 
-# env:
-#   SECRET_KEY: ${{ secrets.SECRET_KEY }}
-#   CLIENT_ID: ${{ secrets.CLIENT_ID }}
-#   CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-#   REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-#   GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-
 jobs:
   Check-If-App-Running:
     runs-on: ubuntu-latest
@@ -22,29 +15,19 @@ jobs:
       - run: echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> app/.env
       - run: echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY}}" >> app/.env
 
-      - name: Check app dir
-        run: | 
-          ls app -a
-          cat app/.env
+      - name: Checkout .env file
+        run: cat app/.env
 
-      # - name: Install Docker Compose
-      #   run: sudo apt-get install docker-compose
-
-      # - name: Create .env file with secrets
-      #   run: |
-      #     echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > app/.env
-      #     echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" > app/.env
-      #     echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" > app/.env
-      #     echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" > app/.env
-      #     echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY}}" > app/.env
+      - name: Install Docker Compose
+        run: sudo apt-get install docker-compose
       
-      # - name: Build and run Docker Compose
-      #   run: docker compose up --build --abort-on-container-exit
+      - name: Build and run Docker Compose
+        run: docker compose up --build --abort-on-container-exit
 
-      # - name: Check if everything is working
-      #   if: ${{ success() }}
-      #   run: echo "All containers are running!"
+      - name: Check if everything is working
+        if: ${{ success() }}
+        run: echo "All containers are running!"
 
-      # - name: Report failure
-      #   if: ${{ failure() }}
-      #   run: echo "One or more containers exited with error code."
+      - name: Report failure
+        if: ${{ failure() }}
+        run: echo "One or more containers exited with error code."
