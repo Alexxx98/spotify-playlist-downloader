@@ -21,8 +21,17 @@ jobs:
       - name: Install Docker Compose
         run: sudo apt-get install docker-compose
       
-      - name: Build and run Docker Compose
-        run: timeout 90 docker compose up --build --abort-on-container-exit
+      - name: Build Docker Compose
+        run: docker compose build
+
+      - name: Run Docker Compose
+        run: docker compose up -d
+
+      - name: Get response from the server
+        run: curl -I http://localhost:82
+
+      - name: Stop Docker Compose
+        run: docker compose down
 
       - name: Check if everything is working
         if: ${{ success() }}
