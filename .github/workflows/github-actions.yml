@@ -22,11 +22,11 @@ jobs:
         run: sudo apt-get install docker-compose
       
       - name: Build and run Docker Compose
-        run: docker compose up --build --abort-on-container-exit
+        run: docker compose up --build --abort-on-container-exit -d
 
       - name: Check if everything is working
         if: ${{ success() }}
-        run: echo "All containers are running!"
+        run: docker compose down
 
       - name: Report failure
         if: ${{ failure() }}
