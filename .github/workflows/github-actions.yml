@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: List app directory
-        run: |
-          ls app -a
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > app/.env
-          ls app -a
-          cat app/.env
+        run: echo "SECRET_KEY=${{ secrets.SECRET_KEY }}
+        CLIENT_ID=${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
+        REDIRECT_URI=${{ secrets.REDIRECT_URI }}
+        GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY}}" > app/.env
 
       # - name: Install Docker Compose
       #   run: sudo apt-get install docker-compose
