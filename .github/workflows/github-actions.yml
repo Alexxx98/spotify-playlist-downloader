@@ -1,12 +1,12 @@
 name: GitHub Actions
 on: [push]
 
-env:
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  CLIENT_ID: ${{ secrets.CLIENT_ID }}
-  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-  REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+# env:
+#   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+#   CLIENT_ID: ${{ secrets.CLIENT_ID }}
+#   CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+#   REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+#   GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
 
 jobs:
   Check-If-App-Running:
@@ -18,6 +18,14 @@ jobs:
 
       - name: Install Docker Compose
         run: sudo apt-get install docker-compose
+
+      - name: Create .env file with secrets
+      run: |
+        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> app/.env
+        echo "CLIENT_ID=${{ secrets.API_KEY }}" >> app/.env
+        echo "CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> app/.env
+        echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> app/.env
+        echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY}}" >> app/.env
       
       - name: Build and run Docker Compose
         run: docker compose up --build --abort-on-container-exit
