@@ -22,7 +22,7 @@ jobs:
         run: sudo apt-get install docker-compose
       
       - name: Build and run Docker Compose
-        run: docker compose up --build --abort-on-container-exit --timeout 60
+        run: timeout 60 docker compose up --build --abort-on-container-exit
 
       - name: Check if everything is working
         if: ${{ success() }}
