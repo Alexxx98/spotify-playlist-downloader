@@ -25,7 +25,9 @@ jobs:
         run: docker compose build
 
       - name: Run Docker Compose
-        run: docker compose up -d
+        run: |
+          docker compose up -d
+          sleep 10
 
       - name: Get response from the server
         run: curl -I http://localhost:82
