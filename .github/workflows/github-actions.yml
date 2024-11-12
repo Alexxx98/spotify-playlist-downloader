@@ -1,6 +1,13 @@
 name: GitHub Actions
 on: [push]
 
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+
 jobs:
   Check-If-App-Running:
     runs-on: ubuntu-latest
@@ -9,16 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Checkout environment secrets
+        run: echo "$REDIRECT_URI"
+
       - name: list the app directory
         run: ls app -a
 
       - name: Create the .env file
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
           echo "SECRET_KEY: $SECRET_KEY >> app/.env"
           echo "CLIENT_ID: $CLIENT_ID >> app/.env"
@@ -29,11 +33,11 @@ jobs:
       - name: List app directory again
         run: ls app -a
 
-      - name: Install Docker Compose
-        run: sudo apt-get install docker-compose
+      # - name: Install Docker Compose
+      #   run: sudo apt-get install docker-compose
 
-      - name: See what's in the .env file
-        run: cat app/.env
+      # - name: See what's in the .env file
+      #   run: cat app/.env
       
       # - name: Build and run Docker Compose
       #   run: docker compose up --build --abort-on-container-exit
