@@ -66,8 +66,16 @@ def home():
     
     playlists = sp.current_user_playlists()['items']
 
-    return render_template('home.html', playlists=playlists)
+    images = []
 
+    for playlist in playlists:
+        try:
+            image = playlist['images'][0]['url']
+            images.append(image)
+        except TypeError:
+            pass
+
+    return render_template('home.html', data=zip(playlists, images))
 
 @app.route('/playlist/<playlist_id>')
 def playlist(playlist_id):

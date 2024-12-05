@@ -3,10 +3,10 @@
 {% block body %}
 
 <div class="playlists-container">
-    {% for playlist in playlists %}
+    {% for playlist, image in data %}
     <a href="{{ url_for('playlist', playlist_id=playlist.id) }}">
         <div class="playlist-thumbnail">
-            <img class="playlist-img" src="{{ playlist.images[0].url }}">
+            <img class="playlist-img" src="{{ image }}">
             <h2>{{ playlist.name }}</h2>
         </div>
     </a>
